@@ -1,0 +1,102 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+  background: #FFC5FE;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding: 0;
+  margin:0;
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: -3px 7px #fff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 9rem;
+  line-height:1;
+  margin-bottom: 0;
+}
+
+.score {
+  background:rgba(255,255,255,0.2);
+  padding:0 3rem;
+  line-height:1;
+  border-radius:1rem;
+}
+
+#begin{
+  display: block;
+  margin-top: 20px; 
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  outline: none;
+  background-color: #CD5331;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 9px rgb(77, 75, 75);
+  text-shadow: 1px 1px rgb(77, 75, 75);
+  letter-spacing: 2px;
+}
+
+#begin:hover{
+  background-color: rgba(197, 48, 6, 0.993);
+  color: white;
+  box-shadow: 0 9px rgb(49, 48, 48);
+}
+
+#begin:active{
+  background-color: rgba(197, 48, 6, 0.993);
+  box-shadow: 0 5px rgb(26, 25, 25);
+  transform: translateY(4px);
+}
+
+.game {
+  width:640px;
+  height:380px;
+  display:flex;
+  flex-wrap:wrap;
+  margin:0 auto;
+  cursor: url('https://www.dropbox.com/s/th0zd8ufw5xkwye/mallet.png?raw=1'), pointer;
+}
+
+.hole {
+  flex: 1 0 33.33%;
+  overflow: hidden;
+  position: relative;
+}
+
+.hole:after {
+  display: block;
+  background: url(dirt.svg) bottom center no-repeat;
+  background-size:contain;
+  content:'';
+  width: 100%;
+  height:75px;
+  position: absolute;
+  z-index: 2;
+  bottom:-30px;
+}
+
+.mole {
+  background:url('cute-mole.png') bottom center no-repeat;
+  background-size: 90%;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 100%;
+  transition:all 0.4s;
+}
+
+.hole.up .mole {
+  top: 0;
+}

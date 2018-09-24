@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Whack A Mole!</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Whack-a-mole! <span class="score">0</span></h1>
+  <button id="begin" onClick="beginGame()">Begin!</button>
+
+  <div class="game">
+    <div class="hole hole1">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole2">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole3">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole4">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole5">
+      <div class="mole"></div>
+    </div>
+    <div class="hole hole6">
+      <div class="mole"></div>
+    </div>
+  </div>
+
+<script>
+  const holes = document.querySelectorAll('.hole');
+  const scoreBoard = document.querySelector('.score');
+  const moles = document.querySelectorAll('.mole');
+  let lastHole;
+  let timeUp = false;
+  let score = 0;
+
+  function randTime(min, max){
+    return Math.round(Math.random() * (max - min)  + min)
+  }
+
+  function randHoles(holes){
+    const index = Math.floor(Math.random() * holes.length);
+    const hole = holes[index];
+    if(hole === lastHole){
+      console.log('Same hole')
+      return randHoles(holes)
+    }
+
+    lastHole = hole;
+    return hole;
+  };
+
+  function popOut(){
+    const time = randTime(200, 2000);
+    const hole = randHoles(holes);
+    hole.classList.add('up');
+    setTimeout(()=>{
+      hole.classList.remove('up')
+      if(!timeUp) popOut();
+    }, time);
+  }
+
+  function beginGame(){
+    scoreBoard.textContent = 0;
+    timeUp = false;
+    score = 0;
+    popOut();
+    setTimeout(()=> timeUp = true, 15000)
+  }
+
+  function hit(e){
+    if(!e.isTrusted) return;
+    score++;
+    this.classList.remove('up');
+    scoreBoard.textContent = score;
+    speedUp(mole);
+  }
+
+  moles.forEach(mole => mole.addEventListener('click', hit));
+
+function speedUp(e){
+  
+}
+
+</script>
+</body>
+</html>
